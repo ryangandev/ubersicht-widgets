@@ -128,7 +128,10 @@ export const render = ({ output }) => {
           <div className="goal-title">{goal.title}</div>
           <div className="progress-container">
             <div className="progress-bar">
-              <div className="progress-fill" style={{ width: `${progress}%` }}></div>
+              <div
+                className="progress-fill"
+                style={{ width: `${progress}%` }}
+              ></div>
             </div>
             <div className="progress-text">{progress}%</div>
           </div>
@@ -138,11 +141,16 @@ export const render = ({ output }) => {
 
     const habits = data.habits.map((habit, i) => {
       const start = new Date(habit.start);
-      const days = Math.max(0, Math.floor((now - start) / (1000 * 60 * 60 * 24)));
+      const days = Math.max(
+        0,
+        Math.floor((now - start) / (1000 * 60 * 60 * 24))
+      );
       return (
         <div className="item" key={`habit-${i}`}>
           <div className="habit-title">{habit.title}</div>
-          <div className="habit-streak">{days} {days === 1 ? 'day' : 'days'} streak</div>
+          <div className="habit-streak">
+            {days} {days === 1 ? "day" : "days"} streak
+          </div>
         </div>
       );
     });

@@ -1,7 +1,7 @@
 export const command =
   "cat ~/Documents/GitHub/ubersicht-widgets/countdown-timer/data.json";
 
-export const refreshFrequency = 60000; // Refresh every minute
+export const refreshFrequency = 360000; // Refresh every hour
 
 export const render = ({ output }) => {
   if (!output) return <div>Loading...</div>;
