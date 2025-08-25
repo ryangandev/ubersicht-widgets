@@ -1,0 +1,17 @@
+{
+  "goals": [
+    {
+      "id": "D4BFC3A1-0B18-4424-B1A7-1F3AAB3FBC01",
+      "title": "Build Java backend",
+      "start": "2025-07-01",
+      "end": "2025-08-15"
+    }
+  ],
+  "habits": [
+    {
+      "id": "2E431E11-9812-4D7B-A36D-2DCC9088DC78",
+      "title": "Gym",
+      "start": "2025-07-10"
+    }
+  ]
+}
