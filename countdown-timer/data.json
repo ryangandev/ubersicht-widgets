@@ -1,0 +1,16 @@
+{
+  "countdowns": [
+    {
+      "title": "Days Left Until MS Application",
+      "targetDate": "2026-08-01"
+    },
+    {
+      "title": "New Year 2026",
+      "targetDate": "2026-01-01"
+    },
+    {
+      "title": "Summer Break",
+      "targetDate": "2025-06-15"
+    }
+  ]
+}
