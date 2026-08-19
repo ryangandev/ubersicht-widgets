@@ -1,6 +1,6 @@
 export const PRESETS = {
   focus: {
-    width: 430,
+    width: 440,
     position: { top: 28, right: 28 },
     summaryColumns: "repeat(3, minmax(0, 1fr))",
     sectionColumns: "1fr",
@@ -13,7 +13,7 @@ export const PRESETS = {
     showCompletedCountdowns: false,
   },
   balanced: {
-    width: 620,
+    width: 540,
     position: { top: 28, right: 28 },
     summaryColumns: "repeat(3, minmax(0, 1fr))",
     sectionColumns: "repeat(2, minmax(0, 1fr))",

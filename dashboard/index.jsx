@@ -2,13 +2,17 @@ import dashboardData from "./src/dashboard-data.js";
 import { buildDashboardSnapshot } from "./src/model.js";
 import { getPreset } from "./src/presets.js";
 
+// Übersicht refreshes command-backed widgets reliably. The command's output is
+// deliberately unimportant: each render derives a fresh snapshot from the
+// local data and current time.
+export const command = "date +%s";
 export const refreshFrequency = 1000 * 60 * 30;
 
 export const className = `
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  position: fixed;
+  top: 28px;
+  right: 28px;
+  width: min(500px, calc(100vw - 56px));
   pointer-events: none;
   user-select: none;
   color: #f6f0e5;
@@ -24,19 +28,12 @@ export const className = `
   --dash-accent: #6fc7c0;
   --dash-accent-strong: #bfe6a8;
 
-  .dashboard-shell {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-
   .dashboard-board {
-    position: absolute;
     display: flex;
     flex-direction: column;
     gap: 18px;
     padding: 22px;
-    border-radius: 28px;
+    border-radius: 24px;
     background:
       radial-gradient(circle at top left, rgba(111, 199, 192, 0.18), transparent 42%),
       radial-gradient(circle at bottom right, rgba(242, 197, 124, 0.14), transparent 38%),
@@ -432,67 +429,21 @@ const renderList = (items, renderer, emptyCopy) =>
   );
 
 const renderError = (message) => (
-  <div className="dashboard-shell">
-    <div
-      className="dashboard-board"
-      style={{ top: 32, right: 32, width: 420, maxWidth: "calc(100vw - 64px)" }}
-    >
+  <div className="dashboard-board">
       <div className="section-card status-overdue">
         <div className="section-header">
           <h2 className="section-title">Dashboard data error</h2>
         </div>
         <div className="empty-state">{message}</div>
       </div>
-    </div>
   </div>
 );
-
-const buildInitialState = () => {
+export const render = () => {
+  let snapshot;
   try {
-    return {
-      error: null,
-      snapshot: buildDashboardSnapshot(dashboardData, new Date()),
-    };
+    snapshot = buildDashboardSnapshot(dashboardData, new Date());
   } catch (error) {
-    return {
-      error: error.message,
-      snapshot: null,
-    };
-  }
-};
-
-export const initialState = buildInitialState();
-
-export const command = (dispatch) => {
-  try {
-    dispatch({ type: "TICK", now: new Date().toISOString() });
-  } catch (error) {
-    dispatch({ type: "ERROR", error: error.message });
-  }
-};
-
-export const updateState = (event, state) => {
-  if (event.type === "ERROR") {
-    return { ...state, error: event.error };
-  }
-
-  if (event.type === "TICK") {
-    try {
-      return {
-        error: null,
-        snapshot: buildDashboardSnapshot(dashboardData, new Date(event.now)),
-      };
-    } catch (error) {
-      return { ...state, error: error.message };
-    }
-  }
-
-  return state;
-};
-
-export const render = ({ error, snapshot }) => {
-  if (error || !snapshot) {
-    return renderError(error);
+    return renderError(error.message);
   }
 
   const preset = getPreset(snapshot.dashboard.preset);
@@ -526,16 +477,7 @@ export const render = ({ error, snapshot }) => {
   ];
 
   return (
-    <div className={`dashboard-shell ${snapshot.dashboard.preset}`}>
-      <div
-        className="dashboard-board"
-        style={{
-          top: preset.position.top,
-          right: preset.position.right,
-          width: preset.width,
-          maxWidth: "calc(100vw - 48px)",
-        }}
-      >
+      <div className="dashboard-board" style={{ width: preset.width }}>
         <div className="dashboard-header">
           <div className="title-stack">
             <span className="eyebrow">{snapshot.generatedAtLabel}</span>
@@ -625,6 +567,5 @@ export const render = ({ error, snapshot }) => {
           </section>
         </div>
       </div>
-    </div>
   );
 };

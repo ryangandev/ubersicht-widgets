@@ -13,6 +13,7 @@ This repository now ships a single self-contained widget: `dashboard/`. It repla
 - `dashboard/index.jsx` is now the only widget entrypoint.
 - The widget is fully click-through via `pointer-events: none`.
 - Dashboard data lives in `dashboard/src/dashboard-data.js` and is imported directly, so there are no hardcoded shell paths.
+- The renderer uses Übersicht's standard command-refresh lifecycle; it does not depend on stateful dispatch callbacks that can leave a stale error on screen.
 - Habit streaks are derived from real `checkIns` arrays.
 - Countdowns automatically separate into `active` and `completed`.
 - Layout is preset-driven with `focus`, `balanced`, and `compact`.

@@ -4,7 +4,7 @@ const dashboardData = {
     title: "Momentum Board",
     subtitle:
       "A single click-through desktop surface for goals, habit streaks, and live milestones.",
-    preset: "balanced",
+    preset: "focus",
   },
   goals: [
     {
