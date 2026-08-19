@@ -1,0 +1,8 @@
+{
+  "name": "ubersicht-portable-dashboard",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-dashboard-data.js"
+  }
+}
