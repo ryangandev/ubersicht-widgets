@@ -1,9 +1,11 @@
 # Review evidence
 
-Checked on 2026-10-01 in America/Los_Angeles.
+Checked on 2026-10-01 and 2026-10-02 in America/Los_Angeles.
 The Today, Queue, history, and desktop simulation screenshots use labeled fictional demo records.
 The separate `widget-engine.jpg` uses the normal service's empty state in the installed Übersicht renderer.
-None is a capture of the macOS desktop window or personal progress.
+The later `native-widget.jpg` captures the actual Übersicht foreground WebKit window with empty normal records.
+It isolates that window, so the white backdrop does not represent the desktop wallpaper.
+None records personal progress.
 
 ## Automated
 
@@ -55,9 +57,20 @@ The translucent background was also darkened after inspecting its readability on
 This uses the installed engine rather than the demo's JSX substitution, but still does not establish macOS window behavior.
 The diagnostic engine was stopped after verification to avoid competing with the app's normal ports.
 
-## Native window limitation
+## Native window
 
 The installed application is Übersicht 1.6, build 82.
-Native UI inspection timed out when addressed by both the application path and `tracesOf.Uebersicht` bundle ID.
-The macOS desktop window, interaction shortcut behavior, click-through, desktop polling, and disconnected recovery were not established.
+Initial native inspection timed out because the app failed before creating its widget windows.
+Native launch logs reproduced an `NSInvalidArgumentException` while constructing the server arguments.
+The saved `widgetDirectory` contained URL bookmark data, but the installed binary and upstream preference controller use an `NSKeyedArchiver` NSURL archive.
+The resolved directory existed and was correct; only its storage format was incompatible.
+After preserving the original value in a temporary backup and repairing that single preference, launching through Finder started the app-owned server on port 41416.
+Its state contained only `dashboard-index-jsx`, visible on all screens, with no widget compilation error.
+The native foreground window's accessibility tree contained the heading and both entry buttons, and [the native window capture](native-widget.jpg) confirms rendering.
+The installed foreground URL was `/1/foreground`; a separate `/1/background` window was transparent and contained no widget.
+
+The [upstream window implementation](https://github.com/felixhageloh/uebersicht/blob/master/Uebersicht/UBWindow.m) joins all Spaces.
+Read-only macOS configuration confirmed two desktops and desktop 1 still active after automated global-shortcut attempts.
+The control tool could not inspect Mission Control or switch Spaces, so direct observation on desktop 2 remains pending.
+Interaction shortcut behavior, click-through, desktop polling, and disconnected recovery also remain pending.
 Use the [desktop acceptance checklist](../architecture.md#desktop-check) before marking native acceptance complete.

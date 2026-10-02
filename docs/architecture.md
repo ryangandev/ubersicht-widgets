@@ -59,6 +59,8 @@ It compiles the actual renderer and style, while the wallpaper, Dock, and menu b
 Native window event handling and click-through remain separate acceptance items.
 The installed Übersicht 1.6 compiler and React/Emotion renderer were also checked through its actual local engine after reproducing and fixing the unwanted-script discovery errors.
 That engine check is distinct from observing the macOS desktop window.
+The app-owned foreground WebKit window was subsequently observed after repairing the local directory preference, as recorded in [native window evidence](previews/verification.md#native-window).
+Übersicht's desktop window joins all Spaces, including desktop 2; selecting a particular Space is a macOS desktop action rather than widget placement.
 
 ## Data and validation
 
