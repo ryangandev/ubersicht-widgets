@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>One Thing · 今日主线</title>
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a href="#today" class="brand"
+          ><span class="brand-mark">◉</span
+          ><span>One Thing<small>A LITTLE MOMENTUM</small></span></a
+        >
+        <div class="nav-label">给重要的事，留一点空间</div>
+        <nav aria-label="主导航">
+          <a href="#today" data-nav="today"><span>◌</span>今日主线</a
+          ><a href="#queue" data-nav="queue"><span>≡</span>Queue <small id="queue-count"></small></a
+          ><a href="#history" data-nav="history"><span>▦</span>每日回顾</a>
+        </nav>
+        <div class="sidebar-bottom">
+          <a href="/widget-preview" target="_blank" rel="noopener">桌面预览 <span>↗</span></a
+          ><a href="/api/export" download>导出记录 <span>↓</span></a>
+          <div class="local-status">
+            <i></i><span id="connection-status">正在连接本机记录</span>
+          </div>
+        </div>
+      </aside>
+      <main class="main">
+        <header class="page-top">
+          <span id="today-label">TODAY</span
+          ><button class="button primary small" id="capture-open">＋ 新想法</button>
+        </header>
+        <div id="demo-banner" class="demo-banner" hidden>
+          示例预览 · 这些任务与完成记录用于体验，不是你的实际进度。
+        </div>
+        <div id="error-banner" class="error-banner" role="alert" hidden>
+          <span id="error-message"></span><button id="retry">重试</button>
+        </div>
+        <section id="view-today" class="view">
+          <div class="page-title">
+            <span class="eyebrow">TODAY, ONE GOOD THING</span>
+            <h1>今天，做成一件事。</h1>
+            <p>选一条主线。让新想法先在 Queue 里等一等。</p>
+          </div>
+          <div id="today-plan" class="today-plan"></div>
+          <section class="daily-note">
+            <span>◌</span>
+            <div>
+              <b>主线完成了，就让这个结果留下来。</b>
+              <p>今天不需要再自动补上一条。明天的主线，明天再选。</p>
+            </div>
+            <a href="#history">看每日回顾 ↗</a>
+          </section>
+          <div class="footer-hint">桌面显示今日主线与可选副项，完整 Queue 留在这里整理。</div>
+        </section>
+        <section id="view-queue" class="view" hidden>
+          <div class="page-title">
+            <span class="eyebrow">CAPTURE NOW. CHOOSE INTENTIONALLY.</span>
+            <h1>先放这里，不急着做。</h1>
+            <p>新想法有地方落下，今天的主线就不必被打断。</p>
+          </div>
+          <form id="quick-capture" class="quick-capture">
+            <label class="sr-only" for="queue-title">记录一个新想法</label
+            ><input
+              id="queue-title"
+              name="title"
+              maxlength="160"
+              placeholder="有什么事想记下来？"
+              required
+              autocomplete="off"
+            /><button class="button primary" type="submit">放入 Queue ↗</button>
+          </form>
+          <div class="list-toolbar">
+            <span id="queue-summary">你的待选任务</span
+            ><label class="search"
+              ><span>⌕</span
+              ><input id="queue-search" type="search" placeholder="查找队列" aria-label="查找队列"
+            /></label>
+          </div>
+          <div id="queue-list" class="queue-list"></div>
+          <details class="archive-panel">
+            <summary>已归档 <span id="archive-count">0</span></summary>
+            <div id="archive-list"></div>
+          </details>
+        </section>
+        <section id="view-history" class="view" hidden>
+          <div class="page-title">
+            <span class="eyebrow">PROGRESS YOU CAN POINT TO</span>
+            <h1>留下每天做成的事。</h1>
+            <p>回看主线的完成结果，以及那天安排了哪些副项。</p>
+          </div>
+          <div id="history-stats" class="history-stats"></div>
+          <section class="calendar-card">
+            <div>
+              <h2>最近四周</h2>
+              <p>没有安排与没有完成，会分别记录。</p>
+            </div>
+            <div id="calendar" class="calendar"></div>
+            <div class="legend">
+              <span><i class="completed"></i>主线完成</span
+              ><span><i class="in-progress"></i>今日进行中</span
+              ><span><i class="missed"></i>未完成</span><span><i class="unplanned"></i>未安排</span>
+            </div>
+          </section>
+          <div class="list-toolbar">
+            <span>每日记录</span
+            ><select id="history-filter" aria-label="筛选每日记录">
+              <option value="all">全部记录</option>
+              <option value="completed">主线完成</option>
+              <option value="missed">主线未完成</option>
+            </select>
+          </div>
+          <div id="history-list"></div>
+        </section>
+        <footer class="app-footer">
+          <span>One Thing / 一条清楚的主线</span><span id="timezone-label"></span>
+        </footer>
+      </main>
+    </div>
+    <dialog id="task-dialog" aria-labelledby="dialog-title">
+      <form id="task-form">
+        <div class="dialog-top">
+          <span class="eyebrow" id="dialog-kicker">A PLACE FOR YOUR NEXT IDEA</span
+          ><button type="button" class="icon-button" id="dialog-close" aria-label="关闭">×</button>
+        </div>
+        <h2 id="dialog-title">先记下来。</h2>
+        <p id="dialog-description">放进 Queue，稍后再决定什么时候做。</p>
+        <label for="task-title">具体要做什么</label
+        ><input
+          id="task-title"
+          name="title"
+          maxlength="160"
+          required
+          placeholder="例如：完成第一版，并通过本地验收"
+          autocomplete="off"
+        /><label for="task-definition"
+          >做到什么算完成 <span id="definition-optional">可稍后补充</span></label
+        ><textarea
+          id="task-definition"
+          name="definition"
+          maxlength="500"
+          rows="3"
+          placeholder="写下一个清楚、可检查的结果"
+        ></textarea>
+        <p id="dialog-error" class="form-error" role="alert" hidden></p>
+        <div class="dialog-actions">
+          <button type="button" id="dialog-cancel" class="button secondary">取消</button
+          ><button type="submit" id="dialog-submit" class="button primary">放入 Queue</button>
+        </div>
+      </form>
+    </dialog>
+    <div id="toast" class="toast" role="status" hidden></div>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

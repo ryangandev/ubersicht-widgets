@@ -1,59 +1,70 @@
-# Portable Übersicht Dashboard
+# One Thing
 
-This repository now ships a single self-contained widget: `dashboard/`. It replaces the legacy `habit-goal/` and `countdown-timer/` widgets with one click-through desktop surface built around structured presets instead of freeform drag-and-drop placement.
+A quiet Übersicht desktop reminder and a local dashboard for choosing one concrete daily main task.
+Capture new ideas in Queue, optionally arrange one secondary task, and keep a record of what you finished each day.
+The desktop stays small; planning and history live in the dashboard.
 
-## Legacy Audit
+![Daily plan](docs/previews/today.jpg)
 
-- `habit-goal/` read data via an absolute repository path and treated a habit streak as "days since start", not real check-ins.
-- `countdown-timer/` also read data via an absolute path and never split milestones into active vs completed states.
-- Both widgets owned their own fixed screen position and styling, so the repo behaved like two unrelated overlays rather than one portable dashboard.
+## Try it
 
-## What Changed
+Requires Node.js 22 or newer.
+From the repository root:
 
-- `dashboard/index.jsx` is now the only widget entrypoint.
-- The widget is fully click-through via `pointer-events: none`.
-- The live widget data and renderer are intentionally self-contained in `dashboard/index.jsx`, so Übersicht does not need to resolve local modules or shell paths at runtime.
-- The renderer uses Übersicht's standard command-refresh lifecycle.
-- Habit streaks are derived from real `checkIns` arrays.
-- Countdowns automatically separate into `active` and `completed`.
-- Layout is preset-driven with `focus`, `balanced`, and `compact`.
-- The separate HabitGoalEditor macOS project is intentionally untouched.
-
-## Layout Presets
-
-Set `dashboard.preset` inside `dashboard/src/dashboard-data.js` to one of:
-
-- `focus`: single-column, fewer cards, hides completed countdowns.
-- `balanced`: two-column default, shows all major sections.
-- `compact`: narrower dense layout for smaller desktop footprints.
-
-## Data Model
-
-The widget exports a single object with four top-level sections:
-
-```js
-{
-  version: 1,
-  dashboard: { title, subtitle, preset },
-  goals: [{ id, title, track, startDate, targetDate, completedAt? }],
-  habits: [{ id, title, cadence, targetCount, checkIns: [] }],
-  countdowns: [{ id, title, category, targetDate, completedAt? }]
-}
+```sh
+npm ci
+npm run demo
 ```
 
-Notes:
+Open [the sample dashboard](http://127.0.0.1:4318) or its [desktop preview](http://127.0.0.1:4318/widget-preview).
+The demo is clearly labeled and uses disposable example records, separate from your own data.
+Press Ctrl+C to stop it.
 
-- Dates use local `YYYY-MM-DD`.
-- Daily habits require `targetCount: 1`.
-- Weekly habits use `targetCount` as the required number of check-ins per week.
-- Countdowns move to `completed` automatically once their target date is in the past, or immediately if `completedAt` is present.
+## Start your own daily record
 
-## Validation
-
-Run:
-
-```bash
-npm run validate
+```sh
+npm start
 ```
 
-That imports the live dashboard data, validates the schema, and prints a compact derived-state summary using the same model code as the widget.
+Open [One Thing](http://127.0.0.1:4317), or run `npm run open` in another terminal.
+Your first day starts empty.
+The service must stay running while you use the dashboard or widget.
+
+1. Record a concrete task in Queue.
+2. Choose it as today's main task and write a clear completion criterion.
+3. Add one optional secondary task if there is room.
+4. Mark the task complete in **今日主线**, then review the result in **每日回顾**.
+
+Unfinished tasks return to Queue the next day without automatically becoming your new main task.
+Completing the main task leaves that result visible for the rest of the day.
+The history distinguishes completed, unfinished, and unplanned days.
+
+Records are saved in `.data/focus.json`, excluded from Git.
+Use **导出记录** to download a backup.
+The service listens only on localhost and uses the computer's timezone by default.
+See [data, backup, and configuration](docs/architecture.md#data-and-validation).
+
+## Add the desktop widget
+
+Keep `npm start` running on its default port, 4317.
+In Übersicht, choose **Open Widgets Folder**, copy this repository's `dashboard/` directory into it, and refresh the widget.
+The installed JSX runs directly in Übersicht without a widget build step.
+
+The task surface is click-through; the two entry buttons open Queue capture and the dashboard.
+Übersicht requires its interaction shortcut and accessibility permission for clicks; configure these using its [official instructions](https://github.com/felixhageloh/uebersicht#running-shell-commands).
+The browser desktop preview uses the actual widget JSX, but native installation, refresh, and click-through still need desktop acceptance.
+Follow [the desktop checklist](docs/architecture.md#verification).
+
+## Development and status
+
+```sh
+npm run check
+```
+
+This runs domain, persistence, and HTTP integration tests, plus JavaScript syntax and actual widget JSX compilation.
+
+- [Current status and next steps](docs/status.md)
+- [Documentation routes](docs/README.md)
+- [Architecture and acceptance checks](docs/architecture.md)
+- [Selected design and ten original concepts](docs/design-review.md)
+- [Agent instructions](AGENTS.md)

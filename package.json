@@ -1,8 +1,24 @@
 {
-  "name": "ubersicht-portable-dashboard",
+  "name": "one-thing-desktop",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
-    "validate": "node scripts/validate-dashboard-data.js"
+    "start": "node server/index.js",
+    "open": "node scripts/open-dashboard.js",
+    "test": "node --test tests/*.test.js",
+    "validate": "node scripts/validate.js",
+    "check": "npm test && npm run validate",
+    "demo": "node scripts/demo.js",
+    "format": "prettier --write \"{server,public,scripts,tests}/**/*.{js,html,css}\" dashboard/index.jsx docs/*.md README.md AGENTS.md CLAUDE.md"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "prettier": "3.9.9"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
   }
 }
