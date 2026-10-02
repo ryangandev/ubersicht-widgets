@@ -6,13 +6,13 @@
     "node": ">=22"
   },
   "scripts": {
-    "start": "node server/index.js",
-    "open": "node scripts/open-dashboard.js",
-    "test": "node --test tests/*.test.js",
-    "validate": "node scripts/validate.js",
+    "start": "node src/server/index.js",
+    "open": "node src/scripts/open-dashboard.js",
+    "test": "node --test src/tests/*.test.js",
+    "validate": "node src/scripts/validate.js",
     "check": "npm test && npm run validate",
-    "demo": "node scripts/demo.js",
-    "format": "prettier --write \"{server,public,scripts,tests}/**/*.{js,html,css}\" dashboard/index.jsx docs/*.md README.md AGENTS.md CLAUDE.md"
+    "demo": "node src/scripts/demo.js",
+    "format": "prettier --write \"src/**/*.{js,html,css}\" dashboard/index.jsx docs/*.md README.md AGENTS.md CLAUDE.md"
   },
   "devDependencies": {
     "esbuild": "0.28.2",

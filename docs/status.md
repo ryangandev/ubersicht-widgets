@@ -11,23 +11,27 @@ Concept 10 One Thing has been expanded into a functioning daily-focus widget and
 The desktop shows one concrete main task, one optional quieter secondary task, and Queue/dashboard entry buttons.
 The dashboard handles capture, deliberate daily selection, completion, and historical review.
 
-| Area                        | Status                       | Evidence or limit                                                                                                                                                                                      |
-| --------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Desktop widget              | Implemented                  | Reads the same daily plan as the dashboard; actual JSX compiled and rendered in browser preview.                                                                                                       |
-| Today and Queue             | Implemented, browser checked | Capture from desktop entry, required criteria, daily roles, completion/undo, search, reorder, archive/restore, and conflict feedback.                                                                  |
-| Daily history               | Implemented                  | Preserved role snapshots, distinct completion states, four-week calendar and metrics, and adjustment records.                                                                                          |
-| Persistence and API         | Implemented, tested          | Serialized atomic saves, revision conflict protection, deduplication, restart persistence, corrupt-file preservation, and local-only API.                                                              |
-| Automated checks            | 16 tests passed              | `npm run check` on 2026-10-01; tests use isolated temporary files and local HTTP ports.                                                                                                                |
-| Sample review               | Available                    | `npm run demo`; clearly labeled disposable records, separate from real data.                                                                                                                           |
-| Native Übersicht acceptance | Pending Ryan                 | Übersicht 1.6 (82) is installed, but native UI inspection timed out through both path and bundle ID; native rendering, interaction shortcut, click-through, and refresh require the desktop checklist. |
-| Agent documentation         | Implemented                  | Shared `AGENTS.md`, `CLAUDE.md` import, documentation routes, status, architecture, and updated design contract.                                                                                       |
-| Ten design concepts         | Retained as review material  | The selected direction is 10; the original gallery remains available for comparison.                                                                                                                   |
+| Area                        | Status                       | Evidence or limit                                                                                                                                                                                 |
+| --------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Desktop widget              | Implemented, engine checked  | Actual installed Übersicht 1.6 compiler and React/Emotion renderer load only `dashboard/index.jsx`, with no widget compilation errors.                                                            |
+| Today and Queue             | Implemented, browser checked | Capture from desktop entry, required criteria, daily roles, completion/undo, search, reorder, archive/restore, and conflict feedback.                                                             |
+| Daily history               | Implemented                  | Preserved role snapshots, distinct completion states, four-week calendar and metrics, and adjustment records.                                                                                     |
+| Persistence and API         | Implemented, tested          | Serialized atomic saves, revision conflict protection, deduplication, restart persistence, corrupt-file preservation, and local-only API.                                                         |
+| Automated checks            | 17 tests passed              | `npm run check` on 2026-10-01; includes regression protection against discovering backend scripts as widgets.                                                                                     |
+| Sample review               | Available                    | `npm run demo`; clearly labeled disposable records, separate from real data.                                                                                                                      |
+| Native Übersicht acceptance | Pending Ryan                 | The installed engine renders and reads the normal service, but macOS app UI inspection timed out; desktop window, interaction shortcut, click-through, and refresh require the desktop checklist. |
+| Agent documentation         | Implemented                  | Shared `AGENTS.md`, `CLAUDE.md` import, documentation routes, status, architecture, and updated design contract.                                                                                  |
+| Ten design concepts         | Retained as review material  | The selected direction is 10; the original gallery remains available for comparison.                                                                                                              |
 
 The old disconnected modular data path has been replaced by one server model consumed by the dashboard and widget.
 Example dates and completion records are confined to the demo and tests; normal usage starts empty.
+The desktop widget is the main interface; the website is its Queue planning and daily-review companion.
+The installed engine initially discovered backend, test, and gallery scripts as widgets when the entire repository was its Widgets Folder.
+Moving non-widget JavaScript under ignored `src/` paths resolved the reproduced errors.
 
 Review images: [today](previews/today.jpg), [Queue](previews/queue.jpg), [daily history](previews/history.jpg), and [desktop preview](previews/desktop.jpg).
 These show labeled sample records and a simulated desktop, not Ryan's actual progress or an observed native widget.
+The separate [installed-engine render](previews/widget-engine.jpg) shows the real empty state through Übersicht's renderer in a browser, rather than the macOS desktop window.
 The [review evidence](previews/verification.md) records the browser workflows, dimensions, and native inspection limitation.
 
 ## Needs Ryan
@@ -44,7 +48,7 @@ These are not part of the current implementation.
 
 ## Next steps
 
-1. Ryan reviews the PR and tries the labeled demo.
+1. Ryan reviews the desktop widget in the PR; the labeled demo supports companion workflow review.
 2. Verify the installed Übersicht widget against the normal service on port 4317.
    Record native rendering, click-through, entry buttons, and ten-second refresh separately from browser results.
 3. Address acceptance feedback within the one-primary/one-secondary, quiet-desktop contract.

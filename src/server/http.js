@@ -31,7 +31,7 @@ async function widgetBundle() {
 }
 export async function startServer({
   port = 4317,
-  directory = join(root, '.data'),
+  directory = join(root, '..', '.data'),
   now = () => new Date(),
   timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone,
   demo = false,

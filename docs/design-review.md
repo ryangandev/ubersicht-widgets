@@ -3,7 +3,8 @@
 Review date: 2026-10-01.
 Status: at Ryan's request, the agent chose 10 One Thing as the daily-focus direction on 2026-10-01.
 Ryan subsequently authorized the expanded workflow and implementation, followed by a PR for acceptance.
-The HTML concepts remain review artifacts; the implemented direction is available through `npm run demo` and the [current review images](status.md#current-state).
+The HTML concepts remain review artifacts; the main implementation is `dashboard/index.jsx` in Übersicht, with a web companion for planning and history.
+Use `npm run demo` and the [current review images](status.md#current-state) to review sample workflows separately from desktop acceptance.
 
 ## Review entrypoint
 
@@ -64,6 +65,7 @@ The broader summaries in 03 and 08 give several categories simultaneous prominen
 Confirmed requirements:
 
 - Show one concrete daily primary task and at most one quieter optional secondary task.
+- Keep the Übersicht desktop widget as the main interface, with the web dashboard as its planning and history companion.
 - Keep all other tasks in a queue or todo list without exposing a full backlog on the desktop.
 - Preserve a small desktop footprint and click-through on the task surface, with explicit interactive Queue and dashboard entry buttons.
 - Capture new ideas in Queue and deliberately choose the daily roles in the dashboard.

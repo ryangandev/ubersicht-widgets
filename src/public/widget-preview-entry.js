@@ -1,4 +1,4 @@
-import { render, className } from '../dashboard/index.jsx';
+import { render, className } from '../../dashboard/index.jsx';
 const style = document.createElement('style');
 style.textContent = `.one-thing-widget {${className}}`;
 document.head.append(style);

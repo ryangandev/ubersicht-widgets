@@ -1,13 +1,14 @@
 # Review evidence
 
 Checked on 2026-10-01 in America/Los_Angeles.
-Screenshots use labeled fictional demo records and a simulated desktop.
-They are not personal progress records or native Übersicht screenshots.
+The Today, Queue, history, and desktop simulation screenshots use labeled fictional demo records.
+The separate `widget-engine.jpg` uses the normal service's empty state in the installed Übersicht renderer.
+None is a capture of the macOS desktop window or personal progress.
 
 ## Automated
 
 A clean `npm ci` completed with no vulnerabilities or install warnings.
-`npm run check` passed all 16 domain, persistence, and HTTP integration tests, then JavaScript syntax and actual widget JSX compilation.
+`npm run check` passed all 17 domain, persistence, HTTP integration, and widget-discovery tests, then JavaScript syntax and actual widget JSX compilation.
 The test suite creates isolated data directories and ephemeral local ports.
 
 ## Browser workflow
@@ -43,9 +44,20 @@ The Queue page had a document width of 390 and no horizontal overflow.
 A 160-character task and 500-character criterion remained inside the widget's bounds at this narrow viewport.
 The original sample title and criterion were restored afterward, and the viewport override was reset.
 
-## Native limitation
+## Installed Übersicht engine
+
+The installed Übersicht 1.6 server was launched with the repository as its Widgets Folder and isolated diagnostic settings.
+Its browser surface reproduced 18 compilation errors from discovering backend, test, and gallery JavaScript as widgets.
+After those files moved under ignored `src/` directories, its state API listed only `dashboard-index-jsx` and no compilation errors.
+Its actual React/Emotion renderer displayed the empty normal state from port 4317 and executed the widget's polling command.
+The translucent background was also darkened after inspecting its readability on a light background.
+[Installed-engine render](widget-engine.jpg) records this check.
+This uses the installed engine rather than the demo's JSX substitution, but still does not establish macOS window behavior.
+The diagnostic engine was stopped after verification to avoid competing with the app's normal ports.
+
+## Native window limitation
 
 The installed application is Übersicht 1.6, build 82.
 Native UI inspection timed out when addressed by both the application path and `tracesOf.Uebersicht` bundle ID.
-Native rendering, interaction shortcut behavior, click-through, polling, and disconnected recovery were not established.
+The macOS desktop window, interaction shortcut behavior, click-through, desktop polling, and disconnected recovery were not established.
 Use the [desktop acceptance checklist](../architecture.md#desktop-check) before marking native acceptance complete.

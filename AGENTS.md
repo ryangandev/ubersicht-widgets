@@ -18,11 +18,12 @@ Before changing the widget, read [Runtime](docs/architecture.md#runtime) and [Da
 
 ## Rules that prevent silent errors
 
-- The live widget is self-contained in `dashboard/index.jsx` and reads the local service; `server/model.js` owns both displays' data rules.
+- The live widget is self-contained in `dashboard/index.jsx` and reads the local service; `src/server/model.js` owns both displays' data rules.
   See [Data and validation](docs/architecture.md#data-and-validation).
 - Preserve desktop click-through except for the two explicit entry buttons, and preserve portability; avoid machine-specific absolute paths.
 - Never commit `.data/`, populate real personal progress from demo records, or silently promote queued tasks into a daily role.
   See [Runtime](docs/architecture.md#runtime).
+- Keep non-widget JavaScript under `src/`; Übersicht recursively treats other `.js` files as widgets when the repo is its Widgets Folder.
 - Keep the separate HabitGoalEditor project outside this repository's scope.
   See [Scope](docs/architecture.md#scope).
 - Reproduce native runtime bugs in Übersicht before fixing them; browser preview and automated checks do not establish native acceptance.

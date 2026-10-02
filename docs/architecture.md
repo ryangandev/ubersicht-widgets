@@ -2,25 +2,29 @@
 
 ## Code map
 
-| File                                                                       | Responsibility                                                                                          |
-| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `dashboard/index.jsx`                                                      | Self-contained live Übersicht renderer, CSS, service polling, and two dashboard entry buttons.          |
-| `dashboard/widget.json`                                                    | Widget metadata.                                                                                        |
-| `server/model.js`                                                          | The single task and daily-plan model, date boundaries, action rules, snapshots, and historical metrics. |
-| `server/store.js`                                                          | Serialized writes, revision checks, operation deduplication, process lock, and atomic JSON persistence. |
-| `server/http.js`                                                           | Local HTTP API, application assets, host/origin checks, and preview endpoint.                           |
-| `server/index.js`                                                          | Normal service entrypoint and shutdown.                                                                 |
-| `server/widget-build.js`                                                   | Browser compilation of the actual widget JSX.                                                           |
-| `public/index.html`, `public/app.js`, `public/styles.css`                  | Today, Queue, and daily-history pages with responsive layouts.                                          |
-| `public/widget-preview-*`, `public/jsx-dom.js`, `public/widget-runtime.js` | Browser desktop simulation and native `run()` substitution for preview entry clicks.                    |
-| `scripts/demo.js`                                                          | Clearly labeled sample records in a disposable directory on port 4318.                                  |
-| `scripts/validate.js`                                                      | Syntax checks and real widget JSX compilation.                                                          |
-| `tests/`                                                                   | Domain, disk persistence, and local HTTP integration checks.                                            |
-| `designs/desktop-study/`                                                   | The original ten design concepts and comparison gallery.                                                |
-| `.github/workflows/check.yml`                                              | Node 24 CI running `npm ci` and `npm run check`.                                                        |
+| File                                                                                   | Responsibility                                                                                          |
+| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `dashboard/index.jsx`                                                                  | Self-contained live Übersicht renderer, CSS, service polling, and two dashboard entry buttons.          |
+| `dashboard/widget.json`                                                                | Widget metadata.                                                                                        |
+| `src/server/model.js`                                                                  | The single task and daily-plan model, date boundaries, action rules, snapshots, and historical metrics. |
+| `src/server/store.js`                                                                  | Serialized writes, revision checks, operation deduplication, process lock, and atomic JSON persistence. |
+| `src/server/http.js`                                                                   | Local HTTP API, application assets, host/origin checks, and preview endpoint.                           |
+| `src/server/index.js`                                                                  | Normal service entrypoint and shutdown.                                                                 |
+| `src/server/widget-build.js`                                                           | Browser compilation of the actual widget JSX.                                                           |
+| `src/public/index.html`, `src/public/app.js`, `src/public/styles.css`                  | Today, Queue, and daily-history pages with responsive layouts.                                          |
+| `src/public/widget-preview-*`, `src/public/jsx-dom.js`, `src/public/widget-runtime.js` | Browser desktop simulation and native `run()` substitution for preview entry clicks.                    |
+| `src/scripts/demo.js`                                                                  | Clearly labeled sample records in a disposable directory on port 4318.                                  |
+| `src/scripts/validate.js`                                                              | Syntax checks and real widget JSX compilation.                                                          |
+| `src/tests/`                                                                           | Domain, disk persistence, and local HTTP integration checks.                                            |
+| `designs/desktop-study/`                                                               | The original ten design concepts and comparison gallery.                                                |
+| `.github/workflows/check.yml`                                                          | Node 24 CI running `npm ci` and `npm run check`.                                                        |
 
 The previous disconnected `dashboard/src/` goal/habit/countdown model and its validation script were removed with the daily-focus replacement.
 There is one data/model source for both the web dashboard and the live widget.
+The desktop widget is the main interface; the web application is its planning and history companion.
+Keep all non-widget JavaScript under a `src/` directory.
+Übersicht 1.6 discovers `.js`, `.jsx`, and `.coffee` recursively, while excluding `src`, `lib`, and `node_modules` paths.
+This prevents a repository configured as its Widgets Folder from treating the backend, tests, and design gallery scripts as desktop widgets.
 
 ## Runtime
 
@@ -52,7 +56,9 @@ User-entered text is never interpolated into a shell command.
 Clicks require Übersicht's configured interaction shortcut and accessibility permission as described in its [official documentation](https://github.com/felixhageloh/uebersicht#running-shell-commands).
 The preview substitutes URL navigation for `run()` and injects a DOM JSX factory with [esbuild](https://esbuild.github.io/api/#inject).
 It compiles the actual renderer and style, while the wallpaper, Dock, and menu bar are simulations.
-Native event handling and Emotion's CSS remain separate acceptance items.
+Native window event handling and click-through remain separate acceptance items.
+The installed Übersicht 1.6 compiler and React/Emotion renderer were also checked through its actual local engine after reproducing and fixing the unwanted-script discovery errors.
+That engine check is distinct from observing the macOS desktop window.
 
 ## Data and validation
 
@@ -78,7 +84,7 @@ Native event handling and Emotion's CSS remain separate acceptance items.
 
 ### Persistence and concurrent use
 
-Normal data lives at `.data/focus.json` beside the repository's server.
+Normal data lives at `.data/focus.json` in the repository root.
 The file has a version, revision, task collection, day snapshots, and recent operation IDs.
 The directory, dependencies, logs, and review data are ignored by Git.
 Normal startup creates an empty state when no file exists; it does not populate example personal progress.
@@ -124,7 +130,7 @@ npm ci
 npm run check
 ```
 
-`npm test` verifies daily-role limits, confirmation, completion and undo, midnight rollover, historical snapshots, timezone/DST dates, queue ordering and archive restoration, stale and duplicate writes, persistence after restart, disk failure, corrupt-data preservation, process locking, HTTP restrictions, UTF-8 input, exports, and application assets.
+`npm test` verifies daily-role limits, confirmation, completion and undo, midnight rollover, historical snapshots, timezone/DST dates, queue ordering and archive restoration, stale and duplicate writes, persistence after restart, disk failure, corrupt-data preservation, process locking, HTTP restrictions, UTF-8 input, exports, application assets, and safe widget discovery from the repository root.
 `npm run validate` checks JavaScript syntax and compiles the actual widget JSX.
 Tests inject dates and use isolated temporary directories and ephemeral ports.
 The normal service has no client-controlled clock or test mutation endpoint.
@@ -155,6 +161,7 @@ Browser checks establish the app workflow and simulated widget output, not nativ
 1. Run the normal service on port 4317 and use its empty record to choose a main task.
 2. Use Übersicht's **Open Widgets Folder** and copy `dashboard/` into it.
    Confirm the installed `index.jsx` matches the version being tested.
+   If the repository is already the configured Widgets Folder, refresh it directly; non-widget scripts belong under ignored `src/` paths.
 3. Refresh Übersicht and check its error console and the visible reminder.
 4. Configure its interaction shortcut and accessibility permission.
    Use both entry buttons and check that Queue capture and the dashboard open correctly.

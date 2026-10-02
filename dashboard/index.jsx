@@ -15,7 +15,7 @@ export const className = `
   user-select: none;
   color: #f5f7ee;
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
-  .focus-surface { padding: 22px; border-radius: 18px; background: linear-gradient(115deg,rgba(17,30,31,.72),rgba(17,30,31,.36)); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 8px 32px rgba(0,0,0,.08); }
+  .focus-surface { padding: 22px; border-radius: 18px; background: linear-gradient(115deg,rgba(17,30,31,.84),rgba(17,30,31,.72)); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 8px 32px rgba(0,0,0,.08); }
   .eyebrow { display:flex; align-items:center; gap:8px; color:#bdcfb4; font-size:10px; letter-spacing:.12em; }
   .signal { width:5px; height:5px; border-radius:50%; background:#bad9a7; }
   h1 { font-family:"Iowan Old Style","Songti SC",Georgia,serif; font-size:30px; font-weight:500; line-height:1.25; letter-spacing:-.035em; margin:13px 0 10px; overflow-wrap:anywhere; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
