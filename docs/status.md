@@ -2,6 +2,8 @@
 
 As of: 2026-10-01, America/Los_Angeles.
 Implementation branch: `codex/daily-focus-queue`, based on `main` at `b499474d4c9f240cffcf03245ed83954ff0be1cc`.
+Review PR: [#2 - One Thing daily focus, idea queue and daily review](https://github.com/ryangandev/ubersicht-widgets/pull/2).
+The implementation and design study are committed and pushed; the PR is open for acceptance and has not been merged.
 
 ## Current state
 
