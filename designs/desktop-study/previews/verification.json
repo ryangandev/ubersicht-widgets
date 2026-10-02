@@ -1,0 +1,542 @@
+{
+  "checkedAt": "2026-09-30",
+  "baseline": [
+    {
+      "name": "Quiet Rail",
+      "occupancy": "3.8%",
+      "widgets": [
+        {
+          "bottom": 794,
+          "class": "widget glass rail",
+          "h": 84,
+          "left": 28,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 608,
+          "top": 710,
+          "w": 580
+        }
+      ]
+    },
+    {
+      "name": "Margin Notes",
+      "occupancy": "5.2%",
+      "widgets": [
+        {
+          "bottom": 354,
+          "class": "widget margin",
+          "h": 276,
+          "left": 36,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 278,
+          "top": 78,
+          "w": 242
+        }
+      ]
+    },
+    {
+      "name": "Focus Tile",
+      "occupancy": "4.8%",
+      "widgets": [
+        {
+          "bottom": 796,
+          "class": "widget glass tile",
+          "h": 224,
+          "left": 28,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 308,
+          "top": 572,
+          "w": 280
+        }
+      ]
+    },
+    {
+      "name": "Horizon Strip",
+      "occupancy": "3.1%",
+      "widgets": [
+        {
+          "bottom": 102,
+          "class": "widget glass strip",
+          "h": 54,
+          "left": 28,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 768,
+          "top": 48,
+          "w": 740
+        }
+      ]
+    },
+    {
+      "name": "Twin Islands",
+      "occupancy": "5.5%",
+      "widgets": [
+        {
+          "bottom": 794,
+          "class": "widget glass island-goal",
+          "h": 156,
+          "left": 28,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 276,
+          "top": 638,
+          "w": 248
+        },
+        {
+          "bottom": 794,
+          "class": "widget glass island-date",
+          "h": 156,
+          "left": 1116,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 1328,
+          "top": 638,
+          "w": 212
+        }
+      ]
+    },
+    {
+      "name": "Habit Orbit",
+      "occupancy": "4.6%",
+      "widgets": [
+        {
+          "bottom": 308,
+          "class": "widget glass orbit",
+          "h": 244,
+          "left": 28,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 272,
+          "top": 64,
+          "w": 244
+        }
+      ]
+    },
+    {
+      "name": "Agenda Slip",
+      "occupancy": "6.3%",
+      "widgets": [
+        {
+          "bottom": 376,
+          "class": "widget glass agenda",
+          "h": 312,
+          "left": 1068,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 1328,
+          "top": 64,
+          "w": 260
+        }
+      ]
+    },
+    {
+      "name": "Status Chips",
+      "occupancy": "1.9%",
+      "widgets": [
+        {
+          "bottom": 794,
+          "class": "widget glass chip goal-chip",
+          "h": 46,
+          "left": 28,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 258,
+          "top": 748,
+          "w": 230
+        },
+        {
+          "bottom": 794,
+          "class": "widget glass chip habit-chip",
+          "h": 46,
+          "left": 268,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 418,
+          "top": 748,
+          "w": 150
+        },
+        {
+          "bottom": 794,
+          "class": "widget glass chip date-chip",
+          "h": 46,
+          "left": 428,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 588,
+          "top": 748,
+          "w": 160
+        }
+      ]
+    },
+    {
+      "name": "Mono Console",
+      "occupancy": "4.4%",
+      "widgets": [
+        {
+          "bottom": 260,
+          "class": "widget glass console",
+          "h": 196,
+          "left": 28,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 320,
+          "top": 64,
+          "w": 292
+        }
+      ]
+    },
+    {
+      "name": "One Thing",
+      "occupancy": "2.9%",
+      "widgets": [
+        {
+          "bottom": 790,
+          "class": "widget one-thing",
+          "h": 104,
+          "left": 36,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 392,
+          "top": 686,
+          "w": 356
+        }
+      ]
+    }
+  ],
+  "additionalScreenSizes": [
+    {
+      "resolution": "1280x800",
+      "name": "Quiet Rail",
+      "rects": [
+        {
+          "bottom": 694,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 608,
+          "x": 28,
+          "y": 610
+        }
+      ]
+    },
+    {
+      "resolution": "1280x800",
+      "name": "Margin Notes",
+      "rects": [
+        {
+          "bottom": 354,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 278,
+          "x": 36,
+          "y": 78
+        }
+      ]
+    },
+    {
+      "resolution": "1280x800",
+      "name": "Focus Tile",
+      "rects": [
+        {
+          "bottom": 696,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 308,
+          "x": 28,
+          "y": 472
+        }
+      ]
+    },
+    {
+      "resolution": "1280x800",
+      "name": "Horizon Strip",
+      "rects": [
+        {
+          "bottom": 102,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 768,
+          "x": 28,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "resolution": "1280x800",
+      "name": "Twin Islands",
+      "rects": [
+        {
+          "bottom": 694,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 276,
+          "x": 28,
+          "y": 538
+        },
+        {
+          "bottom": 694,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 1168,
+          "x": 956,
+          "y": 538
+        }
+      ]
+    },
+    {
+      "resolution": "1280x800",
+      "name": "Habit Orbit",
+      "rects": [
+        {
+          "bottom": 308,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 272,
+          "x": 28,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "resolution": "1280x800",
+      "name": "Agenda Slip",
+      "rects": [
+        {
+          "bottom": 376,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 1168,
+          "x": 908,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "resolution": "1280x800",
+      "name": "Status Chips",
+      "rects": [
+        {
+          "bottom": 694,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 258,
+          "x": 28,
+          "y": 648
+        },
+        {
+          "bottom": 694,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 418,
+          "x": 268,
+          "y": 648
+        },
+        {
+          "bottom": 694,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 588,
+          "x": 428,
+          "y": 648
+        }
+      ]
+    },
+    {
+      "resolution": "1280x800",
+      "name": "Mono Console",
+      "rects": [
+        {
+          "bottom": 260,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 320,
+          "x": 28,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "resolution": "1280x800",
+      "name": "One Thing",
+      "rects": [
+        {
+          "bottom": 690,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 392,
+          "x": 36,
+          "y": 586
+        }
+      ]
+    },
+    {
+      "resolution": "1728x1117",
+      "name": "Quiet Rail",
+      "rects": [
+        {
+          "bottom": 1011,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 608,
+          "x": 28,
+          "y": 927
+        }
+      ]
+    },
+    {
+      "resolution": "1728x1117",
+      "name": "Margin Notes",
+      "rects": [
+        {
+          "bottom": 354,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 278,
+          "x": 36,
+          "y": 78
+        }
+      ]
+    },
+    {
+      "resolution": "1728x1117",
+      "name": "Focus Tile",
+      "rects": [
+        {
+          "bottom": 1013,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 308,
+          "x": 28,
+          "y": 789
+        }
+      ]
+    },
+    {
+      "resolution": "1728x1117",
+      "name": "Horizon Strip",
+      "rects": [
+        {
+          "bottom": 102,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 768,
+          "x": 28,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "resolution": "1728x1117",
+      "name": "Twin Islands",
+      "rects": [
+        {
+          "bottom": 1011,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 276,
+          "x": 28,
+          "y": 855
+        },
+        {
+          "bottom": 1011,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 1616,
+          "x": 1404,
+          "y": 855
+        }
+      ]
+    },
+    {
+      "resolution": "1728x1117",
+      "name": "Habit Orbit",
+      "rects": [
+        {
+          "bottom": 308,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 272,
+          "x": 28,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "resolution": "1728x1117",
+      "name": "Agenda Slip",
+      "rects": [
+        {
+          "bottom": 376,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 1616,
+          "x": 1356,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "resolution": "1728x1117",
+      "name": "Status Chips",
+      "rects": [
+        {
+          "bottom": 1011,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 258,
+          "x": 28,
+          "y": 965
+        },
+        {
+          "bottom": 1011,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 418,
+          "x": 268,
+          "y": 965
+        },
+        {
+          "bottom": 1011,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 588,
+          "x": 428,
+          "y": 965
+        }
+      ]
+    },
+    {
+      "resolution": "1728x1117",
+      "name": "Mono Console",
+      "rects": [
+        {
+          "bottom": 260,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 320,
+          "x": 28,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "resolution": "1728x1117",
+      "name": "One Thing",
+      "rects": [
+        {
+          "bottom": 1007,
+          "overflowX": 0,
+          "overflowY": 0,
+          "right": 392,
+          "x": 36,
+          "y": 903
+        }
+      ]
+    }
+  ],
+  "reviewStorage": "favorite and note survived reload; temporary QA entries removed",
+  "result": "All 10 layouts checked at all 3 simulated desktop sizes; no widget overflow or out-of-bounds rectangles.",
+  "sceneControls": "Dark, light and complex wallpapers; work window; desktop icons checked through the review UI.",
+  "viewportNote": "Dimensions above are the simulated iframe desktop sizes, not physical display sizes."
+}

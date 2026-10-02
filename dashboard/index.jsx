@@ -1,73 +1,69 @@
-// Keep the live widget self-contained. Übersicht loads this file directly and
-// does not need to resolve local modules or restore callback-managed state.
-export const command = "date +%s";
-export const refreshFrequency = 1000 * 60 * 30;
+import { run } from 'uebersicht';
 
-const dashboard = {
-  title: "Momentum Board",
-  subtitle: "Goals, habits, and the next milestone.",
-  goals: [
-    { title: "Portable dashboard rollout", start: "2026-08-10", target: "2026-08-31" },
-    { title: "Build Java backend", start: "2026-08-01", target: "2026-09-15" },
-  ],
-  habits: [
-    { title: "Deep work block", detail: "Done today", streak: 5, tone: "good" },
-    { title: "Gym", detail: "2/3 this week", streak: 2, tone: "active" },
-    { title: "Mobility reset", detail: "Not checked in", streak: 0, tone: "quiet" },
-  ],
-  countdowns: [
-    { title: "Next Dexa scan", category: "Health", target: "2026-09-24" },
-    { title: "First Philly visit", category: "Travel", target: "2026-10-12" },
-    { title: "Walmart contract ends", category: "Work", target: "2026-12-31" },
-  ],
-};
-
-const dayMs = 24 * 60 * 60 * 1000;
-const localDate = (value) => new Date(`${value}T12:00:00`);
-const daysUntil = (value, now) => Math.max(0, Math.ceil((localDate(value) - now) / dayMs));
-const goalProgress = (goal, now) => {
-  const start = localDate(goal.start).getTime();
-  const target = localDate(goal.target).getTime();
-  return Math.max(0, Math.min(100, Math.round(((now - start) / (target - start)) * 100)));
-};
-const dayLabel = (days) => `${days} ${days === 1 ? "day" : "days"}`;
-
+// The desktop and web dashboard share the local service's persisted daily plan.
+// Keep this file self-contained so copying dashboard/ is sufficient for Übersicht.
+const service = 'http://127.0.0.1:4317';
+export const command = `curl --silent --show-error --fail --max-time 3 ${service}/api/widget`;
+export const refreshFrequency = 10000;
+export const initialState = { output: '', error: null };
 export const className = `
   position: fixed;
-  top: 28px;
-  right: 28px;
-  width: min(420px, calc(100vw - 56px));
+  left: 32px;
+  bottom: 104px;
+  width: min(410px, calc(100vw - 64px));
   pointer-events: none;
   user-select: none;
-  color: rgba(248, 250, 252, 0.96);
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-  .board { padding: 18px; border: 1px solid rgba(255,255,255,.13); border-radius: 22px; background: linear-gradient(150deg,rgba(22,31,44,.94),rgba(10,15,23,.9)); box-shadow: 0 20px 52px rgba(0,0,0,.28), inset 0 1px rgba(255,255,255,.06); backdrop-filter: blur(20px); }
-  .heading { display:flex; align-items:flex-start; justify-content:space-between; gap:14px; margin-bottom:16px; }
-  .eyebrow { display:block; color:rgba(226,232,240,.57); font-size:10px; letter-spacing:.14em; text-transform:uppercase; }
-  h1 { margin:5px 0 4px; font-size:24px; line-height:1.05; letter-spacing:-.035em; }
-  .subtitle { margin:0; color:rgba(226,232,240,.62); font-size:12px; line-height:1.4; }
-  .today { flex:0 0 auto; padding:7px 9px; border:1px solid rgba(255,255,255,.1); border-radius:10px; color:rgba(226,232,240,.67); font-size:10px; text-align:right; }
-  .section { margin-top:12px; padding:13px; border:1px solid rgba(255,255,255,.08); border-radius:15px; background:rgba(255,255,255,.035); }
-  .section-top { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; }
-  h2 { margin:0; font-size:13px; letter-spacing:-.01em; }
-  .meta { color:rgba(226,232,240,.53); font-size:10px; }
-  .row { padding:9px 0; border-top:1px solid rgba(255,255,255,.065); }
-  .row:first-of-type { padding-top:0; border-top:0; } .row:last-child { padding-bottom:0; }
-  .row-top { display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
-  .name { font-size:12px; font-weight:600; line-height:1.25; } .label { color:rgba(226,232,240,.55); font-size:10px; white-space:nowrap; }
-  .progress { height:4px; margin-top:7px; overflow:hidden; border-radius:999px; background:rgba(255,255,255,.1); }
-  .progress > span { display:block; height:100%; border-radius:inherit; background:linear-gradient(90deg,#6ee7d0,#9ed7a6); }
-  .habit-detail { margin-top:3px; color:rgba(226,232,240,.58); font-size:10px; } .tone-good .habit-detail { color:#8ce1bc; } .tone-active .habit-detail { color:#e9c978; }
-  .countdown { display:flex; align-items:center; justify-content:space-between; gap:12px; } .days { color:#9ee4dd; font-size:18px; font-weight:700; letter-spacing:-.04em; }
+  color: #f5f7ee;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  .focus-surface { padding: 22px; border-radius: 18px; background: linear-gradient(115deg,rgba(17,30,31,.84),rgba(17,30,31,.72)); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 8px 32px rgba(0,0,0,.08); }
+  .eyebrow { display:flex; align-items:center; gap:8px; color:#bdcfb4; font-size:10px; letter-spacing:.12em; }
+  .signal { width:5px; height:5px; border-radius:50%; background:#bad9a7; }
+  h1 { font-family:"Iowan Old Style","Songti SC",Georgia,serif; font-size:30px; font-weight:500; line-height:1.25; letter-spacing:-.035em; margin:13px 0 10px; overflow-wrap:anywhere; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+  .completed { color:#c6e4b4; }
+  .secondary { display:flex; gap:10px; align-items:baseline; margin-top:15px; padding-top:12px; border-top:1px solid rgba(232,244,221,.14); font-size:12px; color:#d0dacb; }
+  .secondary span { flex:0 0 auto; font-size:10px; color:#9fae96; }
+  .secondary strong { font-weight:450; overflow-wrap:anywhere; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .entries { display:flex; flex-wrap:wrap; gap:9px; align-items:center; margin-top:19px; }
+  .entry { pointer-events:auto; cursor:pointer; padding:7px 10px; border:1px solid rgba(224,239,215,.2); border-radius:20px; background:rgba(216,233,204,.07); color:#e0ecd8; font:10px -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif; }
+  .entry:hover { background:rgba(216,233,204,.16); }
+  .entry:focus-visible { outline:2px solid #c5dfb1; outline-offset:3px; }
+  .quiet-entry { border-color:transparent; background:transparent; color:#becab4; }
+  .connection { font-size:10px; color:#d7c89b; margin:12px 0 0; }
 `;
-
-export const render = () => {
-  const now = new Date();
-  const date = now.toLocaleDateString(undefined, { month: "short", day: "numeric" });
-  return <div className="board">
-    <header className="heading"><div><span className="eyebrow">Desktop dashboard</span><h1>{dashboard.title}</h1><p className="subtitle">{dashboard.subtitle}</p></div><span className="today">{date}<br />Focus</span></header>
-    <section className="section"><div className="section-top"><h2>Goals</h2><span className="meta">2 active</span></div>{dashboard.goals.map((goal) => { const progress = goalProgress(goal, now); const days = daysUntil(goal.target, now); return <div className="row" key={goal.title}><div className="row-top"><span className="name">{goal.title}</span><span className="label">{dayLabel(days)} left</span></div><div className="progress"><span style={{ width: `${progress}%` }} /></div></div>; })}</section>
-    <section className="section"><div className="section-top"><h2>Habits</h2><span className="meta">today</span></div>{dashboard.habits.map((habit) => <div className={`row tone-${habit.tone}`} key={habit.title}><div className="row-top"><span className="name">{habit.title}</span><span className="label">{habit.streak ? `${habit.streak}d streak` : "Start today"}</span></div><div className="habit-detail">{habit.detail}</div></div>)}</section>
-    <section className="section"><div className="section-top"><h2>Next up</h2><span className="meta">countdowns</span></div>{dashboard.countdowns.map((item) => { const days = daysUntil(item.target, now); return <div className="row countdown" key={item.title}><div><div className="name">{item.title}</div><div className="habit-detail">{item.category}</div></div><div><div className="days">{days}</div><div className="label">days</div></div></div>; })}</section>
-  </div>;
+const open = (path) => run(`open '${service}/${path}'`).catch(() => {});
+export const render = ({ output = '', error = null }) => {
+  let data = null;
+  try {
+    const parsed = JSON.parse(output);
+    if (typeof parsed.today === 'string' && 'primary' in parsed) data = parsed;
+  } catch {}
+  const primary = data?.primary,
+    secondary = data?.secondary;
+  return (
+    <div className="focus-surface">
+      <div className="eyebrow">
+        <span className="signal" />
+        {primary?.completedAt ? '今日主线 · 已完成' : '今日主线'}
+        {data ? ` · ${data.today.slice(5).replace('-', ' / ')}` : ''}
+      </div>
+      <h1 className={primary?.completedAt ? 'completed' : ''} title={primary?.title || ''}>
+        {primary ? primary.title : '给今天留一条主线。'}
+      </h1>
+      {secondary && (
+        <div className="secondary">
+          <span>{secondary.completedAt ? '副项 ✓' : '可选副项'}</span>
+          <strong title={secondary.title}>{secondary.title}</strong>
+        </div>
+      )}
+      <div className="entries">
+        <button className="entry" onClick={() => open('?capture=1#queue')}>
+          ＋ 添加待办 / 新想法
+        </button>
+        <button className="entry quiet-entry" onClick={() => open('#today')}>
+          今日 / 回顾 ↗
+        </button>
+      </div>
+      {(!data || error) && <p className="connection">暂时无法读取安排 · 请确认 One Thing 已启动</p>}
+    </div>
+  );
 };

@@ -1,6 +1,6 @@
 {
-  "name": "portable-dashboard",
-  "description": "Unified click-through dashboard for goals, habits, and countdowns.",
-  "author": "OpenAI Codex",
+  "name": "one-thing",
+  "description": "One daily main task, an optional secondary task, and a quiet Queue entry.",
+  "author": "Ryan Gan",
   "email": ""
 }

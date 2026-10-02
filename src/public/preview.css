@@ -1,0 +1,96 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: #233b40;
+  color: #f2f5eb;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+  overflow: hidden;
+}
+.landscape {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 75% 10%, #677568, transparent 50%),
+    linear-gradient(135deg, #1b2d39, #405650);
+  overflow: hidden;
+}
+.landscape:before,
+.landscape:after {
+  content: '';
+  position: absolute;
+  left: -10%;
+  top: 48%;
+  width: 130%;
+  height: 90%;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #283e45, #86937b);
+  transform: rotate(-13deg);
+}
+.landscape:after {
+  top: 72%;
+  left: -15%;
+  transform: rotate(13deg);
+  background: linear-gradient(100deg, #182b33, #3c5657);
+}
+.menu {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 28px;
+  padding: 0 20px;
+  background: #15252655;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  font-size: 11px;
+}
+.menu span {
+  opacity: 0.55;
+}
+.menu a {
+  color: #edf4df;
+  margin-left: auto;
+  text-decoration: none;
+}
+.dock {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 9px;
+  padding: 9px 12px;
+  border: 1px solid #eff8e533;
+  border-radius: 18px;
+  background: #c6d7c929;
+  backdrop-filter: blur(14px);
+}
+.dock i {
+  font-style: normal;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  background: linear-gradient(#92b9ab, #587e76);
+  font-size: 24px;
+}
+.dock i:nth-child(1) {
+  background: #91c5e1;
+  color: #2a5876;
+}
+.dock i:nth-child(2) {
+  background: #538fbb;
+}
+.dock i:nth-child(3) {
+  background: #e4d186;
+  color: #807239;
+}
+.dock i:nth-child(4) {
+  background: #eee9dc;
+  color: #56674a;
+}
+.dock i:nth-child(5) {
+  background: #789074;
+}
