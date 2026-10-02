@@ -46,7 +46,9 @@ Both displays derive today's plan from the same stored data.
 
 The desktop reminder sits 32 pixels from the left edge and 104 pixels above the bottom.
 Its width is `min(410px, calc(100vw - 64px))`.
-Titles clamp to three lines, the completion criterion to two, and the optional secondary title to two.
+The desktop shows only the primary title, clamped to three lines, and an optional secondary title, clamped to two.
+Task descriptions, completion criteria, and empty/completed explanatory paragraphs stay off this surface; criteria remain in the planning and history companion.
+The capture entry is labeled **添加待办 / 新想法**.
 The translucent sage and charcoal surface extends the small bottom-left typography of concept 10.
 Queue contents, charts, habit streaks, and countdowns stay off the desktop.
 

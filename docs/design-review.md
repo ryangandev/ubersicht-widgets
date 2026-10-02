@@ -65,6 +65,7 @@ The broader summaries in 03 and 08 give several categories simultaneous prominen
 Confirmed requirements:
 
 - Show one concrete daily primary task and at most one quieter optional secondary task.
+- Keep the primary task as one direct sentence without a description below it; label the capture entry **添加待办 / 新想法**.
 - Keep the Übersicht desktop widget as the main interface, with the web dashboard as its planning and history companion.
 - Keep all other tasks in a queue or todo list without exposing a full backlog on the desktop.
 - Preserve a small desktop footprint and click-through on the task surface, with explicit interactive Queue and dashboard entry buttons.
@@ -73,13 +74,13 @@ Confirmed requirements:
 
 Implemented adaptation:
 
-- Render one large primary task, one short completion criterion, and an optional quieter second task.
+- Render one large primary title and an optional quieter second task, with no description beneath the primary.
 - Express the primary task as a concrete result achievable today rather than an ongoing project title.
-- Replace the prototype's illustrative percentage bar with an explicit completion criterion or real completion state.
+- Replace the prototype's illustrative percentage bar with real completion state in the eyebrow; completion criteria belong in the companion dashboard.
 - Keep habits, countdowns, backlog counts, and other summary metrics out of the daily-focus surface.
 - Open a focused capture dialog from the desktop Queue entry, with Today, Queue, and daily-history pages behind it.
 - Use muted sage, warm paper, and restrained serif headings in the dashboard, with the primary task visually dominant.
-- Expand the desktop typography with a translucent surface for legibility, bounded title/criterion lines, and two small entry buttons.
+- Expand the desktop typography with a translucent surface for legibility, bounded title lines, and two small entry buttons.
 - Do not silently promote queue items or unfinished tasks into today's main task.
 - Preserve each day's title and completion criterion; unfinished tasks return to Queue the next day while the past day remains unfinished.
 - Keep a completed primary visible for the rest of the day rather than automatically filling another primary slot.

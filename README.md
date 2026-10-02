@@ -4,7 +4,9 @@ A quiet **Übersicht desktop widget** for choosing one concrete daily main task.
 The desktop is the main interface: a small reminder, one optional secondary task, and an entry for putting new ideas into Queue.
 A separate local web dashboard supports planning and daily history.
 
-![Desktop widget preview](docs/previews/desktop.jpg)
+![Current native widget window](docs/previews/native-widget.jpg)
+
+This captures the Übersicht window in isolation; its white backdrop is not the desktop wallpaper.
 
 ## Run the desktop widget
 

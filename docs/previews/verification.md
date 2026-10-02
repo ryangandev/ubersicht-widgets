@@ -17,7 +17,8 @@ The test suite creates isolated data directories and ephemeral local ports.
 
 The application was exercised through its visible browser controls.
 
-- Desktop **新想法入 Queue** opened the dashboard with a focused capture dialog.
+- Desktop capture opened the dashboard with a focused capture dialog.
+  Its current label is **添加待办 / 新想法**; the original workflow check used **新想法入 Queue**.
 - Capturing a task with a title and criterion saved it into Queue.
 - Selecting a primary opened an explicit criterion confirmation.
 - Selecting a secondary without a criterion stayed in the dialog with required-field validation.
@@ -71,6 +72,9 @@ The installed foreground URL was `/1/foreground`; a separate `/1/background` win
 
 The [upstream window implementation](https://github.com/felixhageloh/uebersicht/blob/master/Uebersicht/UBWindow.m) joins all Spaces.
 Read-only macOS configuration confirmed two desktops and desktop 1 still active after automated global-shortcut attempts.
-The control tool could not inspect Mission Control or switch Spaces, so direct observation on desktop 2 remains pending.
+The control tool could not inspect Mission Control or switch Spaces.
+Ryan subsequently confirmed seeing the native widget on 2026-10-02.
+After his simplification feedback, the live native accessibility tree and updated capture verified that the description was absent and the entry read **添加待办 / 新想法**.
+The primary, completed-primary, and empty states share the same title-only desktop structure; the companion retains completion criteria.
 Interaction shortcut behavior, click-through, desktop polling, and disconnected recovery also remain pending.
 Use the [desktop acceptance checklist](../architecture.md#desktop-check) before marking native acceptance complete.

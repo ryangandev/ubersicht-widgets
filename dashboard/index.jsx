@@ -19,7 +19,6 @@ export const className = `
   .eyebrow { display:flex; align-items:center; gap:8px; color:#bdcfb4; font-size:10px; letter-spacing:.12em; }
   .signal { width:5px; height:5px; border-radius:50%; background:#bad9a7; }
   h1 { font-family:"Iowan Old Style","Songti SC",Georgia,serif; font-size:30px; font-weight:500; line-height:1.25; letter-spacing:-.035em; margin:13px 0 10px; overflow-wrap:anywhere; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
-  .criterion { font-size:12px; color:#d0dacb; line-height:1.7; margin:0; overflow-wrap:anywhere; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
   .completed { color:#c6e4b4; }
   .secondary { display:flex; gap:10px; align-items:baseline; margin-top:15px; padding-top:12px; border-top:1px solid rgba(232,244,221,.14); font-size:12px; color:#d0dacb; }
   .secondary span { flex:0 0 auto; font-size:10px; color:#9fae96; }
@@ -50,13 +49,6 @@ export const render = ({ output = '', error = null }) => {
       <h1 className={primary?.completedAt ? 'completed' : ''} title={primary?.title || ''}>
         {primary ? primary.title : '给今天留一条主线。'}
       </h1>
-      <p className="criterion" title={primary?.definition || ''}>
-        {primary
-          ? primary.completedAt
-            ? '这件事已经完成了。今天的进展，值得留下。'
-            : `做到这一步：${primary.definition}`
-          : '从 Queue 里选一件具体的事，让今天有一个清楚的完成结果。'}
-      </p>
       {secondary && (
         <div className="secondary">
           <span>{secondary.completedAt ? '副项 ✓' : '可选副项'}</span>
@@ -65,7 +57,7 @@ export const render = ({ output = '', error = null }) => {
       )}
       <div className="entries">
         <button className="entry" onClick={() => open('?capture=1#queue')}>
-          ＋ 新想法入 Queue
+          ＋ 添加待办 / 新想法
         </button>
         <button className="entry quiet-entry" onClick={() => open('#today')}>
           今日 / 回顾 ↗
